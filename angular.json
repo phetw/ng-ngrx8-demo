@@ -84,6 +84,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-ngrx8-demo"
+    }
+  },
+  "defaultProject": "ng-ngrx8-demo",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
