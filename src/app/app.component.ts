@@ -10,20 +10,26 @@ import { Todo } from './model/todo.model';
 @Component({
   selector: 'app-root',
   template: `
-    <section>
+    <section class="container">
       <h1>{{ count$ | async }}</h1>
       <button (click)="add()">add</button>
       <button (click)="subtract()">substract</button>
-    </section>
-    <section>
       <button (click)="listTodo()">get todos</button>
       <div *ngIf="todosLoading$ | async">Loading....</div>
 
-      <div *ngFor="let todo of todos$ | async">
-        <div *ngIf="!(todosLoading$ | async)">{{ todo.title }}</div>
-      </div>
+      <ul *ngFor="let todo of todos$ | async">
+        <li *ngIf="!(todosLoading$ | async)" [ngClass]="{ done: todo.completed }">{{ todo.title }}</li>
+      </ul>
     </section>
-  `
+  `,
+  styles: [
+    `
+      .done {
+        color: lightgrey;
+        text-decoration: line-through;
+      }
+    `
+  ]
 })
 export class AppComponent implements OnInit {
   count$: Observable<number>;
